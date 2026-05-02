@@ -18,7 +18,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
-          include-prerelease: true   # remove if .NET 10 is fully released
 
       - name: Restore dependencies
         run: dotnet restore
@@ -30,7 +29,7 @@ jobs:
         run: dotnet test --no-build --verbosity normal
 
       - name: Publish (Windows x64)
-        run: dotnet publish -c Release -r win-x64 --self-contained true -o publish
+        run: dotnet publish ./DesignPatterns-COM6031/DesignPatterns-COM6031.csproj -c Release -r win-x64 --self-contained true -o publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
