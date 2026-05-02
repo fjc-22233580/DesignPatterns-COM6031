@@ -8,4 +8,14 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <Company>Francisco Castillo - 22233580</Company>
+        <Authors>Francisco Castillo</Authors>
+        <Product>Design Patterns Console App</Product>
+        <Description>App to demonstrate design pattern for COM6031</Description>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <BaseOutputPath>..\Output\</BaseOutputPath>
+    </PropertyGroup>
 </Project>
