@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatterns-COM6031", "DesignPatterns-COM6031\DesignPatterns-COM6031.csproj", "{CC9C4790-92BC-4895-8493-2D2C9EDB9E31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC9C4790-92BC-4895-8493-2D2C9EDB9E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9C4790-92BC-4895-8493-2D2C9EDB9E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9C4790-92BC-4895-8493-2D2C9EDB9E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9C4790-92BC-4895-8493-2D2C9EDB9E31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
