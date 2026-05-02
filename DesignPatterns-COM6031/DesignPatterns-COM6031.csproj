@@ -15,4 +15,7 @@
         <Description>App to demonstrate design pattern for COM6031</Description>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <BaseOutputPath>..\Output\</BaseOutputPath>
+    </PropertyGroup>
 </Project>

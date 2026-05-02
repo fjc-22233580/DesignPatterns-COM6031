@@ -4,6 +4,9 @@
 # Rider
 .idea/
 
+# Output
+Output/
+
 
 # User-specific files
 *.rsuser
