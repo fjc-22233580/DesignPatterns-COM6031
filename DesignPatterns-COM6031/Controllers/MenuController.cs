@@ -1,5 +1,6 @@
 ﻿using DesignPatterns_COM6031.Common;
 using DesignPatterns_COM6031.Scenarios;
+using DesignPatterns_COM6031.Scenarios.DocumentCreation;
 using DesignPatterns_COM6031.Views;
 
 namespace DesignPatterns_COM6031.Controllers;
@@ -28,8 +29,8 @@ public class MenuController
     {
         while (true)
         {
-            int response = ConsoleView.PrintSelectableMenu(Name, _menuOptions.Select(x =>x.Title).ToList());
-            _menuOptions[response].Action();
+            int menuIndex = ConsoleView.PrintSelectableMenu(Name, _menuOptions.Select(x =>x.Title).ToList());
+            _menuOptions[menuIndex].Action();
         }
     }
 }
