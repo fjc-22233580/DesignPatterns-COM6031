@@ -1,12 +1,14 @@
 ﻿using System.Text;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
+using DesignPatterns_COM6031.Scenarios.SupportTicketSystem;
+using DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Ticket;
 
 namespace DesignPatterns_COM6031.Views;
 
 public class ConsoleView
 {
-    private const int BoxWidth = 50;
+    private const int BoxWidth = 80;
 
     public static int PrintSelectableMenu(string title, List<string> items)
     {
@@ -69,6 +71,19 @@ public class ConsoleView
 
         return selectedIndex;
     }
+    
+    
+    public static void PrintTicket(string title, Ticket ticket)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine(ticket.Title);
+        sb.AppendLine(ticket.Description);
+        sb.AppendLine(ticket.CreatedDate.ToShortDateString());
+        sb.AppendLine(ticket.Priority.ToString());
+        sb.AppendLine(ticket.Category.ToString());
+        
+        PrintBox(title, sb.ToString());
+    }
 
 
     public static void PrintDocument(string title, IDocument document)
@@ -85,23 +100,6 @@ public class ConsoleView
     {
         PrintBox(title, prompt);
     }
-
-    // private static void PrintBox(string title, string body)
-    // {
-    //     Console.Clear();
-    //     Console.SetCursorPosition(0, 0);
-    //
-    //     Console.WriteLine("┌" + new string('─', BoxWidth) + "┐");
-    //     Console.WriteLine("│" + Centre(title, BoxWidth) + "│");
-    //     Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
-    //
-    //     Console.WriteLine("│" + body.PadRight(BoxWidth) + "│");
-    //
-    //     Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
-    //     Console.WriteLine("│" + "Press any key to return to menu".PadRight(BoxWidth) + "│");
-    //     Console.WriteLine("└" + new string('─', BoxWidth) + "┘");
-    //     Console.ReadKey(true);
-    // }
 
     private static void PrintBox(string title, string body)
     {
@@ -153,4 +151,5 @@ public class ConsoleView
         int leftPadding = (width + text.Length) / 2;
         return text.PadLeft(leftPadding).PadRight(width);
     }
+
 }
