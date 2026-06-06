@@ -1,6 +1,6 @@
 ﻿using DesignPatterns_COM6031.Common;
-using DesignPatterns_COM6031.Scenarios;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation;
+using DesignPatterns_COM6031.Scenarios.SupportTicketSystem;
 using DesignPatterns_COM6031.Views;
 
 namespace DesignPatterns_COM6031.Controllers;
