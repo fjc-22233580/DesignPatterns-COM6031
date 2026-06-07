@@ -1,4 +1,5 @@
-﻿using DesignPatterns_COM6031.Common;
+﻿using System.Text;
+using DesignPatterns_COM6031.Common;
 using DesignPatterns_COM6031.Views;
 
 namespace DesignPatterns_COM6031.Scenarios.FileSystem;
@@ -6,14 +7,16 @@ namespace DesignPatterns_COM6031.Scenarios.FileSystem;
 public class FileSystemDemo : IDemo
 {
     public string Name => nameof(FileSystemDemo);
+
     public void Run()
     {
         bool running = true;
-        
+
         // Define the menu options for the main menu.
         var menuOptions = new List<MenuItem>
         {
-            new MenuItem("Crate file system demo", CreateFileSystem),
+            new MenuItem("Print file system structure for test data (packaged with this exe).",
+                CreateTestDataFileSystem),
             new MenuItem("Return to previous menu", () => { running = false; }),
         };
 
@@ -25,22 +28,28 @@ public class FileSystemDemo : IDemo
         }
     }
 
-    private void CreateFileSystem()
+    private void CreateTestDataFileSystem()
     {
-        var file = Path.Combine(AppContext.BaseDirectory, "TestData","TestDocument.txt");
+        const string testDataFolder = "TestData";
+        var testDataPath = Path.Combine(AppContext.BaseDirectory, testDataFolder);
 
-        if (File.Exists(file))
+        // Could not find test data path - bail out.
+        if (!Directory.Exists(testDataPath))
         {
-            var fileInfo = new FileInfo(file);
-            
-            ConsoleView.PrintMessage(Name, $"Test document exists: Path: {fileInfo.Directory} {fileInfo.Length} bytes");
-            
+            ConsoleView.PrintMessage(Name, $"Cannot find test data folder, is it at the root as the exe?");
+            return;
         }
-        else
-        {
-            ConsoleView.PrintMessage(Name, $"Cannot find test document");
-            
-        }
-        
+
+        // We have found the test data directory
+        var sb = new StringBuilder();
+        sb.AppendLine("Test data directory exists:");
+        sb.AppendLine(testDataPath);
+        sb.AppendLine();
+
+        // Load the file system structure and print it out
+        var root = FileSystemLoader.Load(testDataPath);
+        var tree = FileSystemTreeRenderer.Render(root);
+        sb.AppendLine(tree);
+        ConsoleView.PrintMessage(Name, sb.ToString());
     }
 }
