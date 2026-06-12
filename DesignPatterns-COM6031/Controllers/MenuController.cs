@@ -1,6 +1,7 @@
 ﻿using DesignPatterns_COM6031.Common;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation;
 using DesignPatterns_COM6031.Scenarios.FileSystem;
+using DesignPatterns_COM6031.Scenarios.HomeSimulationSystem;
 using DesignPatterns_COM6031.Scenarios.SupportTicketSystem;
 using DesignPatterns_COM6031.Views;
 
@@ -18,7 +19,8 @@ public class MenuController
         {
             new DocumentCreationDemo(),
             new SupportTicketSystemDemo(),
-            new FileSystemDemo()
+            new FileSystemDemo(),
+            new HomeSimulationDemo()
         };
 
         _menuOptions = demos
