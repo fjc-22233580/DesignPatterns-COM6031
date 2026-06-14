@@ -2,9 +2,9 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
 
-public class WordDocumentCreator : DocumentCreator
+public class WordDocumentCreator : DocumentCreator<WordDocument>
 {
-    public override IDocument CreateDocument()
+    public override WordDocument CreateDocument()
     {
         return new WordDocument();
     }

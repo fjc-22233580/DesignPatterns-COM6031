@@ -2,9 +2,9 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
 
-public class WordDocumentBuilder : DocumentBuilder<WordDocumentBuilder>
+public class WordDocumentBuilder : DocumentBuilder<WordDocumentBuilder,  WordDocument>
 {
-    public WordDocumentBuilder(IDocument document) : base(document)
+    public WordDocumentBuilder(WordDocument document) : base(document)
     {
         
     }

@@ -1,36 +1,36 @@
-﻿using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
+﻿namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
 
-namespace DesignPatterns_COM6031.Scenarios.DocumentCreation;
-
-public abstract class DocumentBuilder<TBuilder> where TBuilder : DocumentBuilder<TBuilder>
+public abstract class DocumentBuilder<TBuilder, TDocument> 
+    where TBuilder : DocumentBuilder<TBuilder, TDocument> 
+    where TDocument : IDocument
 {
-    protected readonly IDocument _document;
+    protected readonly TDocument Document;
     
-    protected DocumentBuilder(IDocument document)
+    protected DocumentBuilder(TDocument document)
     {
-        _document = document;
+        Document = document;
     }
     
     public virtual TBuilder AddTitle(string title)
     {
-        _document.Title = title;
+        Document.Title = title;
         return (TBuilder)this;
     }
 
-    public TBuilder AddBody(string body)
+    public virtual TBuilder AddBody(string body)
     {
-        _document.Body = body;
+        Document.Body = body;
         return (TBuilder)this;
     }
 
     public virtual TBuilder AddFooter(string footer)
     {
-        _document.Footer = footer;
+        Document.Footer = footer;
         return (TBuilder)this;
     }
 
     public IDocument Build()
     {
-        return _document;
+        return Document;
     }
 }

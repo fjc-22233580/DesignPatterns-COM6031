@@ -2,9 +2,9 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
 
-public class PdfDocumentBuilder : DocumentBuilder<PdfDocumentBuilder>
+public class PdfDocumentBuilder : DocumentBuilder<PdfDocumentBuilder, PdfDocument>
 {
-    public PdfDocumentBuilder(IDocument document) : base(document)
+    public PdfDocumentBuilder(PdfDocument document) : base(document)
     {
         
     }

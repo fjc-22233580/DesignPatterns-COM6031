@@ -2,9 +2,9 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
 
-public class PdfDocumentCreator : DocumentCreator
+public class PdfDocumentCreator : DocumentCreator<PdfDocument>
 {
-    public override IDocument CreateDocument()
+    public override PdfDocument CreateDocument()
     {
         return new PdfDocument();
     }

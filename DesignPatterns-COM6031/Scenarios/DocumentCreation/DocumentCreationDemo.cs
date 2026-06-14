@@ -32,59 +32,60 @@ public class DocumentCreationDemo : IDemo
 
     private void CreateSpreadsheet()
     {
-        var  creator = new SpreadsheetDocumentCreator();
-        var document = creator.CreateDocument();
-        
-        var builder = new SpreadsheetDocumentBuilder(document);
+        // Create spreadsheet document, builder, then build it
+        var spreadsheetDocument = new SpreadsheetDocumentCreator().CreateDocument();
+        var builder = new SpreadsheetDocumentBuilder(spreadsheetDocument);
         builder
             .AddTitle("Example Document")
             .AddBody("Document content")
             .AddFooter("Spreadsheet Document")
-            .AddWorksheet("New worksheet") 
+            .AddWorksheet("New worksheet") // This specialization allows for adding worksheets. 
             .Build();
         
+        // Process the document using the template workflow.
+        // The PDF processor overrides the validate method to specialize that step. 
         var processor = new SpreadsheetDocumentProcessor();
-        processor.ProcessDocument(document);
+        processor.ProcessDocument(spreadsheetDocument);
         
-        ConsoleView.PrintDocument(Name, document);
+        ConsoleView.PrintDocument(Name, spreadsheetDocument);
     }
 
 
     private void CreatePdf()
     {
-        var creator = new PdfDocumentCreator();
-        var document = creator.CreateDocument();
-                    
-        var builder = new PdfDocumentBuilder(document);
-
+        // Create pdf document, builder, then build it
+        var pdfDocument = new PdfDocumentCreator().CreateDocument();
+        var builder = new PdfDocumentBuilder(pdfDocument);
         builder
             .AddTitle("Example Document")
             .AddBody("Document content")
             .AddFooter("PDF Document")
             .Build();
                     
+        // Process the document using the template workflow.
+        // The PDF processor overrides the validate method to specialize that step. 
         var processor = new PdfDocumentProcessor();
-
-        processor.ProcessDocument(document);
-        ConsoleView.PrintDocument(Name, document);
+        processor.ProcessDocument(pdfDocument);
+        
+        ConsoleView.PrintDocument(Name, pdfDocument);
     }
     
     private void CreateDoc()
     {
-        var creator = new WordDocumentCreator();
-        var document = creator.CreateDocument();
-        
-        var builder = new WordDocumentBuilder(document);
-        
+        // Create word document, builder, then build it
+        var wordDocument = new WordDocumentCreator().CreateDocument();
+        var builder = new WordDocumentBuilder(wordDocument);
         builder
             .AddTitle("Example Document")
             .AddBody("Document content")
-            .AddFooter("Word Document")
+            .AddFooter("Document 15th Mar 2020 - J.Doe")
             .Build();
         
+        // Process the document using the template workflow.
+        // The Word processor overrides the save operation to store a revision date.
         var processor = new WordDocumentProcessor();
-        processor.ProcessDocument(document);
+        processor.ProcessDocument(wordDocument);
         
-        ConsoleView.PrintDocument(Name, document);
+        ConsoleView.PrintDocument(Name, wordDocument);
     }
 }

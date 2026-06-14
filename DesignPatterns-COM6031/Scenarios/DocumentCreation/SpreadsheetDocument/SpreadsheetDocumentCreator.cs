@@ -2,9 +2,9 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
 
-public class SpreadsheetDocumentCreator : DocumentCreator
+public class SpreadsheetDocumentCreator : DocumentCreator<SpreadsheetDocument>
 {
-    public override IDocument CreateDocument()
+    public override SpreadsheetDocument CreateDocument()
     {
         return new SpreadsheetDocument();
     }
