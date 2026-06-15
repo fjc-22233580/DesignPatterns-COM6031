@@ -15,8 +15,7 @@ public class FileSystemDemo : IDemo
         // Define the menu options for the main menu.
         var menuOptions = new List<MenuItem>
         {
-            new MenuItem("Print file system structure for test data (packaged with this exe).",
-                CreateTestDataFileSystem),
+            new MenuItem("Print file system structure for test data (packaged with this exe).", CreateTestDataFileSystem),
             new MenuItem("Return to previous menu", () => { running = false; }),
         };
 

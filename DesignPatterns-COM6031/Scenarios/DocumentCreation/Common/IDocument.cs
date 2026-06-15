@@ -2,10 +2,6 @@
 
 public interface IDocument
 {
-    void Open();
-    void Save();
-    void Print();
-    
     string Title { get; set; }
     
     string Body { get; set; }

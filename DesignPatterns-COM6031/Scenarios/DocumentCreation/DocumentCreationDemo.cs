@@ -1,4 +1,5 @@
-﻿using DesignPatterns_COM6031.Common;
+﻿using System.Text;
+using DesignPatterns_COM6031.Common;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
@@ -36,10 +37,11 @@ public class DocumentCreationDemo : IDemo
         var spreadsheetDocument = new SpreadsheetDocumentCreator().CreateDocument();
         var builder = new SpreadsheetDocumentBuilder(spreadsheetDocument);
         builder
-            .AddTitle("Example Document")
-            .AddBody("Document content")
-            .AddFooter("Spreadsheet Document")
-            .AddWorksheet("New worksheet") // This specialization allows for adding worksheets. 
+            .AddTitle("Budget Summary")
+            .AddBody("Quarterly budget overview.")
+            .AddFooter("Finance Department")
+            .AddWorksheet("Q1 Budget") // This specialization allows for adding worksheets.
+            .AddWorksheet("Q2 Budget")
             .Build();
         
         // Process the document using the template workflow.
@@ -57,9 +59,10 @@ public class DocumentCreationDemo : IDemo
         var pdfDocument = new PdfDocumentCreator().CreateDocument();
         var builder = new PdfDocumentBuilder(pdfDocument);
         builder
-            .AddTitle("Example Document")
-            .AddBody("Document content")
-            .AddFooter("PDF Document")
+            .AddTitle("Monthly Report")
+            .AddBody("Performance overview for April.")
+            .AddFooter("PDF Export")
+            .SignPdf(isSigned: true)
             .Build();
                     
         // Process the document using the template workflow.
@@ -76,9 +79,10 @@ public class DocumentCreationDemo : IDemo
         var wordDocument = new WordDocumentCreator().CreateDocument();
         var builder = new WordDocumentBuilder(wordDocument);
         builder
-            .AddTitle("Example Document")
-            .AddBody("Document content")
-            .AddFooter("Document 15th Mar 2020 - J.Doe")
+            .AddTitle("Meeting Notes")
+            .AddBody("Actions agreed during the team meeting.")
+            .AddFooter("Revised 15th Mar 2020 - J.Doe")
+            .AddRevision("First draft complete.")
             .Build();
         
         // Process the document using the template workflow.

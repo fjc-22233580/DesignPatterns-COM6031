@@ -2,17 +2,13 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
 
-public class SpreadsheetDocumentProcessor : DocumentProcessor
+public class SpreadsheetDocumentProcessor : DocumentProcessor<SpreadsheetDocument>
 {
-    protected override void Validate(IDocument document)
+    protected override void Validate(SpreadsheetDocument document)
     {
-        var spreadsheetDocument = (SpreadsheetDocument)document;
-
-        if (spreadsheetDocument.Worksheets.Any() == false)
+        if (document.Worksheets.Any() == false)
         {
-            Console.WriteLine("Spreadsheet validation failed: document is empty!");
+            throw new InvalidOperationException("Document is missing revisions.");
         }
-        
-        Console.WriteLine($"Spreadsheet validation passed: {spreadsheetDocument.Worksheets.Count}");
     }
 }

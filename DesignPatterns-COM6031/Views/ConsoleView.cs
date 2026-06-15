@@ -1,7 +1,8 @@
 ﻿using System.Text;
-using DesignPatterns_COM6031.Scenarios.DocumentCreation;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
-using DesignPatterns_COM6031.Scenarios.SupportTicketSystem;
+using DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
+using DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
+using DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
 using DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Ticket;
 
 namespace DesignPatterns_COM6031.Views;
@@ -89,9 +90,49 @@ public class ConsoleView
     public static void PrintDocument(string title, IDocument document)
     {
         var sb = new StringBuilder();
-        sb.AppendLine(document.Title);
-        sb.AppendLine(document.Body);
-        sb.AppendLine(document.Footer);
+        sb.AppendLine("=========================");
+        sb.AppendLine($"Type: {document.GetType().Name}");
+        sb.AppendLine("=========================");
+        sb.AppendLine();
+        sb.AppendLine($"Title: {document.Title}");
+        sb.AppendLine($"Body: {document.Body}");
+        sb.AppendLine($"Footer: {document.Footer}");
+
+        switch (document)
+        {
+            case SpreadsheetDocument spreadsheet:
+            {
+                sb.AppendLine();
+                sb.AppendLine("Worksheets:");
+            
+                foreach (var spreadsheetWorksheet in spreadsheet.Worksheets)
+                {
+                    sb.AppendLine(spreadsheetWorksheet);
+                }
+
+                break;
+            }
+            case WordDocument wordDocument:
+            {
+                sb.AppendLine();
+                sb.AppendLine("Revisions:");
+            
+                foreach (var wordDocumentRevision in wordDocument.Revisions)
+                {
+                    sb.AppendLine(wordDocumentRevision);
+                }
+
+                break;
+            }
+            case PdfDocument pdfDocument:
+            {
+                sb.AppendLine();
+                sb.AppendLine($"E-sign status: {pdfDocument.IsSigned}");
+
+                break;
+            }
+                
+        }
         
         PrintBox(title, sb.ToString());
     }

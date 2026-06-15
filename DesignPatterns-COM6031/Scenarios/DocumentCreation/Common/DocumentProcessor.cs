@@ -1,23 +1,24 @@
 ﻿namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
 
-public abstract class DocumentProcessor
+public abstract class DocumentProcessor<TDocument> where TDocument : IDocument
 {
-    public void ProcessDocument(IDocument document)
+    public void ProcessDocument(TDocument document)
     {
         Validate(document);
         Save(document);
         Print(document);
     }
 
-    protected abstract void Validate(IDocument document);
+   
+    protected abstract void Validate(TDocument document);
 
-    protected virtual void Save(IDocument document)
+    protected virtual void Save(TDocument document)
     {
-        document.Save();
+        // Document Saved
     }
 
-    protected virtual void Print(IDocument document)
+    protected virtual void Print(TDocument document)
     {
-        document.Print();
+        // Document Printed
     }
 }

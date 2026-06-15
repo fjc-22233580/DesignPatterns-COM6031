@@ -2,10 +2,13 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
 
-public class PdfDocumentProcessor : DocumentProcessor
+public class PdfDocumentProcessor : DocumentProcessor<PdfDocument>
 {
-    protected override void Validate(IDocument document)
+    protected override void Validate(PdfDocument document)
     {
-        Console.WriteLine("Validating PDF...");
+        if (document.IsSigned == false)
+        {
+            throw new InvalidOperationException("PdfDocument is not signed");
+        }
     }
 }

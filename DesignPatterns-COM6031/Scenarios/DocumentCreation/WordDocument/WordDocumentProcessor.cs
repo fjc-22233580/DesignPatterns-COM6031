@@ -2,16 +2,19 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
 
-public class WordDocumentProcessor : DocumentProcessor
+public class WordDocumentProcessor : DocumentProcessor<WordDocument>
 {
-    protected override void Validate(IDocument document)
+    protected override void Validate(WordDocument document)
     {
-        Console.WriteLine("Validating Word Document...");
+        if (document.Revisions.Any() == false)
+        {
+            throw new InvalidOperationException("Document is missing revisions.");
+        }
     }
 
-    protected override void Save(IDocument document)
+    protected override void Save(WordDocument document)
     {
-        ((WordDocument)document).Revisions.Add($"Saved at {DateTime.Now}");
+        document.Revisions.Add($"Saved at {DateTime.Now}");
         base.Save(document);
     }
 }

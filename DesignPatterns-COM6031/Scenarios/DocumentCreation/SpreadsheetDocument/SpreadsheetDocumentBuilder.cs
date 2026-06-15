@@ -2,7 +2,7 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
 
-public class SpreadsheetDocumentBuilder : DocumentBuilder<SpreadsheetDocumentBuilder,  SpreadsheetDocument>
+public class SpreadsheetDocumentBuilder : DocumentBuilder<SpreadsheetDocumentBuilder, SpreadsheetDocument>
 {
     public SpreadsheetDocumentBuilder(SpreadsheetDocument document) : base(document)
     {

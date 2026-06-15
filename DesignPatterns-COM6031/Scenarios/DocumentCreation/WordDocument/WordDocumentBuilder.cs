@@ -8,4 +8,10 @@ public class WordDocumentBuilder : DocumentBuilder<WordDocumentBuilder,  WordDoc
     {
         
     }
+    
+    public WordDocumentBuilder AddRevision(string revision)
+    {
+        Document.Revisions.Add($"{revision} Date: {DateTime.Now}");
+        return this;
+    }
 }

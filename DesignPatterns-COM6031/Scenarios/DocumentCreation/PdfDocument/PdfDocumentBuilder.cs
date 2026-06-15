@@ -9,6 +9,12 @@ public class PdfDocumentBuilder : DocumentBuilder<PdfDocumentBuilder, PdfDocumen
         
     }
 
+    public PdfDocumentBuilder SignPdf(bool isSigned)
+    {
+        Document.IsSigned = isSigned;
+        return this;
+    }
+
     public override PdfDocumentBuilder AddFooter(string footer)
     {
         footer += " | Generated as PDF";
