@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using DesignPatterns_COM6031.Common;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
@@ -7,11 +8,11 @@ using DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Ticket;
 
 namespace DesignPatterns_COM6031.Views;
 
-public class ConsoleView
+public static class ConsoleView
 {
     private const int BoxWidth = 80;
 
-    public static int PrintSelectableMenu(string title, List<string> items)
+    public static int PrintSelectableMenu(string title, List<MenuItem> items)
     {
         int selectedIndex = 0;
         bool inMenu = true;
@@ -40,8 +41,8 @@ public class ConsoleView
                 }
 
                 string line = selected
-                    ? $"  {menuNumber}. {items[i]}  "
-                    : $"  {menuNumber}. {items[i]}";
+                    ? $"  {menuNumber}. {items[i].Title}  "
+                    : $"  {menuNumber}. {items[i].Title}";
 
                 Console.Write(line.PadRight(BoxWidth));
                 Console.ResetColor();

@@ -33,7 +33,7 @@ public class MenuController
     {
         while (true)
         {
-            int menuIndex = ConsoleView.PrintSelectableMenu(Name, _menuOptions.Select(x =>x.Title).ToList());
+            int menuIndex = ConsoleView.PrintSelectableMenu(Name, _menuOptions);
             _menuOptions[menuIndex].Action();
         }
     }

@@ -66,10 +66,9 @@ public class HomeSimulationDemo : IDemo
         };
 
         // Print menu and wait for the user to respond.
-        var stringMenu = menuOptions.Select(x => x.Title).ToList();
         while (running)
         {
-            int response = ConsoleView.PrintSelectableMenu(Name, stringMenu);
+            int response = ConsoleView.PrintSelectableMenu(Name, menuOptions);
             menuOptions[response].Action();
         }
     }

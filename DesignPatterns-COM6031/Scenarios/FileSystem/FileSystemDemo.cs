@@ -19,10 +19,9 @@ public class FileSystemDemo : IDemo
             new MenuItem("Return to previous menu", () => { running = false; }),
         };
 
-        var stringMenu = menuOptions.Select(x => x.Title).ToList();
         while (running)
         {
-            int response = ConsoleView.PrintSelectableMenu(Name, stringMenu);
+            int response = ConsoleView.PrintSelectableMenu(Name, menuOptions);
             menuOptions[response].Action();
         }
     }

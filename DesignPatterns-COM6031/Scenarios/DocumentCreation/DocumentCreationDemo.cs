@@ -1,5 +1,4 @@
-﻿using System.Text;
-using DesignPatterns_COM6031.Common;
+﻿using DesignPatterns_COM6031.Common;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
@@ -26,7 +25,7 @@ public class DocumentCreationDemo : IDemo
 
         while (running)
         {
-            int menuIndex = ConsoleView.PrintSelectableMenu(Name, menuOptions.Select(x =>x.Title).ToList());
+            int menuIndex = ConsoleView.PrintSelectableMenu(Name, menuOptions);
             menuOptions[menuIndex].Action();
         }
     }
