@@ -10,7 +10,7 @@ public class SupportTicketSystemDemo : IDemo
 {
     private Level1Support _support;
     
-    public string Name => nameof(SupportTicketSystemDemo);
+    public string Name => "Supper ticket system demo";
     
     public void Run()
     {

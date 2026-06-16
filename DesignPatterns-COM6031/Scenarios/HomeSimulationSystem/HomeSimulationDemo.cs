@@ -29,7 +29,7 @@ public class HomeSimulationDemo : IDemo
         _remote = new RemoteControl();
     }
 
-    public string Name => "Home Simulation";
+    public string Name => "Home simulation demo";
 
     public void Run()
     {

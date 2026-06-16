@@ -8,7 +8,7 @@ namespace DesignPatterns_COM6031.Scenarios.DocumentCreation;
 
 public class DocumentCreationDemo : IDemo
 {
-    public string Name => nameof(DocumentCreationDemo);
+    public string Name => "Document creation demo";
     
     public void Run()
     {

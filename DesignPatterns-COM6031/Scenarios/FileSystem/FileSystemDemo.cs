@@ -6,7 +6,7 @@ namespace DesignPatterns_COM6031.Scenarios.FileSystem;
 
 public class FileSystemDemo : IDemo
 {
-    public string Name => nameof(FileSystemDemo);
+    public string Name => "File system demo";
 
     public void Run()
     {
@@ -22,7 +22,7 @@ public class FileSystemDemo : IDemo
         while (running)
         {
             int response = ConsoleView.PrintSelectableMenu(Name, menuOptions);
-            menuOptions[response].Action();
+            menuOptions[response].Action(); 
         }
     }
 
