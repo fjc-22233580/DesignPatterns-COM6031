@@ -16,16 +16,19 @@ public class HomeSimulationDemo : IDemo
 
     public HomeSimulationDemo()
     {
+        // Setup devices
         _light = new Light("Living Room");
         _thermostat = new Thermostat("Airing Cupboard");
         _frontDoor = new DoorLock("Front Door");
 
+        // Facade for managing multiple entities, and in this regard adds "evening mode" and "away mode"
         _smartHomeFacade = new SmartHomeFacade(_light, _thermostat, _frontDoor)
         {
             EveningTemperature = 22,
             AwayTemperature = 16,
         };
 
+        // Create remote control to allow commands to be invoked to control entities
         _remote = new RemoteControl();
     }
 

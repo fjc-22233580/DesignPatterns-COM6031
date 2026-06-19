@@ -10,7 +10,7 @@ public class SupportTicketSystemDemo : IDemo
 {
     private Level1Support _support;
     
-    public string Name => "Supper ticket system demo";
+    public string Name => "Support ticket system demo";
     
     public void Run()
     {
@@ -88,7 +88,7 @@ public class SupportTicketSystemDemo : IDemo
             TicketCategory.HardwareIssue);
         
         var sb = new StringBuilder();
-        sb.AppendLine("L2 Ticket created:");
+        sb.AppendLine("L3 Ticket created:");
         sb.AppendLine();
         sb.AppendLine(ticket.ToString());
         sb.AppendLine(_support.Handle(ticket));

@@ -34,7 +34,7 @@ public class FileSystemDemo : IDemo
         // Could not find test data path - bail out.
         if (!Directory.Exists(testDataPath))
         {
-            ConsoleView.PrintMessage(Name, $"Cannot find test data folder, is it at the root as the exe?");
+            ConsoleView.PrintMessage(Name, $"Cannot find test data folder, is it at the root of this exe?");
             return;
         }
 
@@ -43,10 +43,13 @@ public class FileSystemDemo : IDemo
         sb.AppendLine("Test data directory exists:");
         sb.AppendLine(testDataPath);
         sb.AppendLine();
-
+        
         // Load the file system structure and print it out
         var root = FileSystemLoader.Load(testDataPath);
         var tree = FileSystemTreeRenderer.Render(root);
+        
+        sb.AppendLine("Test data file/directory structure:");
+        sb.AppendLine();
         sb.AppendLine(tree);
         ConsoleView.PrintMessage(Name, sb.ToString());
     }
