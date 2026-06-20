@@ -1,13 +1,3 @@
 ﻿namespace DesignPatterns_COM6031.Common;
 
-public class MenuItem
-{
-    public string Title { get; }
-    public Action Action { get; }
-
-    public MenuItem(string title, Action action)
-    {
-        Title = title;
-        Action = action;
-    }
-}
+public sealed record MenuItem(string Title, Action Action);
