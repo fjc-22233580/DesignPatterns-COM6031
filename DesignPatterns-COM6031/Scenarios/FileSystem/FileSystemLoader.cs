@@ -1,7 +1,14 @@
 ﻿namespace DesignPatterns_COM6031.Scenarios.FileSystem;
 
+/// <summary>
+/// Creates the file system object model from a real directory path.
+/// In this context, it loads a folder of test data which is packaged with this exe.
+/// </summary>
 public static class FileSystemLoader
 {
+    /// <summary>
+    /// Recursively loads a directory and its contents into the composite file system structure.
+    /// </summary>
     public static DirectoryItem Load(string path)
     {
         var directoryInfo = new DirectoryInfo(path);
