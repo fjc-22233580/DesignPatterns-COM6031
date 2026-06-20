@@ -33,8 +33,8 @@ public class DocumentCreationDemo : IDemo
     private void CreateSpreadsheet()
     {
         // Create spreadsheet document, builder, then build it
-        var spreadsheetDocument = new SpreadsheetDocumentCreator().CreateDocument();
-        var builder = new SpreadsheetDocumentBuilder(spreadsheetDocument);
+        var spreadsheetDocument = new SpreadsheetDocumentCreator().CreateDocument(); // Factory
+        var builder = new SpreadsheetDocumentBuilder(spreadsheetDocument); // Builder
         builder
             .AddTitle("Budget Summary")
             .AddBody("Quarterly budget overview.")
@@ -45,7 +45,7 @@ public class DocumentCreationDemo : IDemo
         
         // Process the document using the template workflow.
         // The PDF processor overrides the validate method to specialize that step. 
-        var processor = new SpreadsheetDocumentProcessor();
+        var processor = new SpreadsheetDocumentProcessor(); // Template
         processor.ProcessDocument(spreadsheetDocument);
         
         ConsoleView.PrintDocument(Name, spreadsheetDocument);
@@ -75,20 +75,21 @@ public class DocumentCreationDemo : IDemo
     private void CreateDoc()
     {
         // Create word document, builder, then build it
-        var wordDocument = new WordDocumentCreator().CreateDocument();
-        var builder = new WordDocumentBuilder(wordDocument);
+        var wordDocument = new WordDocumentCreator().CreateDocument(); // Factory
+        var builder = new WordDocumentBuilder(wordDocument); // Builder
         builder
             .AddTitle("Meeting Notes")
             .AddBody("Actions agreed during the team meeting.")
             .AddFooter("Revised 15th Mar 2020 - J.Doe")
-            .AddRevision("First draft complete.")
+            .AddRevision("First draft complete.") // Builder specialization
             .Build();
         
         // Process the document using the template workflow.
         // The Word processor overrides the save operation to store a revision date.
-        var processor = new WordDocumentProcessor();
+        var processor = new WordDocumentProcessor(); // Template method
         processor.ProcessDocument(wordDocument);
         
+        // Print test document to console.
         ConsoleView.PrintDocument(Name, wordDocument);
     }
 }

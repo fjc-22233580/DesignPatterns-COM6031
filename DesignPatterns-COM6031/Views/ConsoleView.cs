@@ -4,14 +4,19 @@ using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
-using DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Ticket;
 
 namespace DesignPatterns_COM6031.Views;
 
+/// <summary>
+/// Provides shared console output methods used by the scenario demonstrations.
+/// </summary>
 public static class ConsoleView
 {
     private const int BoxWidth = 80;
 
+    /// <summary>
+    /// Prints a selectable console menu and returns the index of the selected item.
+    /// </summary>
     public static int PrintSelectableMenu(string title, List<MenuItem> items)
     {
         int selectedIndex = 0;
@@ -73,21 +78,10 @@ public static class ConsoleView
 
         return selectedIndex;
     }
-    
-    
-    public static void PrintTicket(string title, Ticket ticket)
-    {
-        var sb = new StringBuilder();
-        sb.AppendLine(ticket.Title);
-        sb.AppendLine(ticket.Description);
-        sb.AppendLine(ticket.CreatedDate.ToShortDateString());
-        sb.AppendLine(ticket.Priority.ToString());
-        sb.AppendLine(ticket.Category.ToString());
-        
-        PrintBox(title, sb.ToString());
-    }
 
-
+    /// <summary>
+    /// Prints the common document fields, along with any document-specific details.
+    /// </summary>
     public static void PrintDocument(string title, IDocument document)
     {
         var sb = new StringBuilder();
@@ -138,11 +132,17 @@ public static class ConsoleView
         PrintBox(title, sb.ToString());
     }
 
+    /// <summary>
+    /// Prints a simple message inside the standard console box layout.
+    /// </summary>
     public static void PrintMessage(string title, string prompt)
     {
         PrintBox(title, prompt);
     }
 
+    /// <summary>
+    /// Prints boxed console output with a title, wrapped body text, and return prompt.
+    /// </summary>
     private static void PrintBox(string title, string body)
     {
         Console.Clear();
@@ -184,7 +184,9 @@ public static class ConsoleView
         Console.ReadKey(true);
     }
 
-
+    /// <summary>
+    /// Centres text within a fixed-width console line.
+    /// </summary>
     private static string Centre(string text, int width)
     {
         if (text.Length >= width)

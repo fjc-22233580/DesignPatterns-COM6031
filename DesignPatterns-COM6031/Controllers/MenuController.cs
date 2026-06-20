@@ -7,13 +7,17 @@ using DesignPatterns_COM6031.Views;
 
 namespace DesignPatterns_COM6031.Controllers;
 
+/// <summary>
+/// Controls the main console menu for selecting and running each scenario demo.
+/// </summary>
 public class MenuController
 {
     private const string Name = "Design Patterns App - COM6031";
 
-    private readonly List<MenuItem> _menuOptions;
-    
-    public MenuController()
+    /// <summary>
+    /// Runs the menu loop until the user selects the exit option.
+    /// </summary>
+    public void Run()
     {
         var demos = new List<IDemo>
         {
@@ -23,18 +27,15 @@ public class MenuController
             new HomeSimulationDemo()
         };
 
-        _menuOptions = demos
+        var menuOptions = demos
             .Select(demo => new MenuItem(demo.Name, demo.Run))
             .Append(new MenuItem("Exit", () => Environment.Exit(0)))
             .ToList();
-    }
 
-    public void Run()
-    {
-        while (true)
+        while (true) // No need to end this loop as there is a menu option which closes the application.
         {
-            int menuIndex = ConsoleView.PrintSelectableMenu(Name, _menuOptions);
-            _menuOptions[menuIndex].Action();
+            int menuIndex = ConsoleView.PrintSelectableMenu(Name, menuOptions);
+            menuOptions[menuIndex].Action();
         }
     }
 }
