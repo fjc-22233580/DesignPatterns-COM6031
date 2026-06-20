@@ -3,7 +3,9 @@ using DesignPatterns_COM6031.Scenarios.HomeSimulationSystem.Devices;
 
 namespace DesignPatterns_COM6031.Scenarios.HomeSimulationSystem.Commands;
 
-
+/// <summary>
+/// Command that sets the thermostat to a specific temperature.
+/// </summary>
 public class SetTemperatureCommand : ICommand
 {
     private readonly Thermostat _thermostat;
@@ -16,6 +18,9 @@ public class SetTemperatureCommand : ICommand
         _temperature = temperature;
     }
     
+    /// <summary>
+    /// Caches the current thermostat temperature, then sets the requested temperature.
+    /// </summary>
     public string Execute()
     {
         // Cache previous temperature
@@ -25,6 +30,9 @@ public class SetTemperatureCommand : ICommand
         return _thermostat.SetTemperature(_temperature);
     }
 
+    /// <summary>
+    /// Undoes the command by restoring the thermostat temperature from before execution.
+    /// </summary>
     public string Undo()
     {
         // User has chosen to undo - so set to cached value.
