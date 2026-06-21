@@ -18,6 +18,6 @@ public class Level1Support : SupportHandler
     /// </summary>
     protected override string Resolve(Ticket ticket)
     {
-        return $"Level 1 resolved ticket {ticket.Title}";
+        return $"{GetType().Name} resolved ticket with ID: {ticket.Id}";
     }
 }

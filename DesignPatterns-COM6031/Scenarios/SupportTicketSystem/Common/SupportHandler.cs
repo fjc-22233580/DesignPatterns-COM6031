@@ -27,7 +27,7 @@ public abstract class SupportHandler : ISupportHandler
         }
 
         // Could not resolve ticket this level, so pass onto next level.
-        var msg = $"Ticket: {ticket.Title} escalated to next level via {this.GetType().Name}";
+        var msg = $"Ticket: {ticket.Id} escalated to next level via {this.GetType().Name}";
         if (_nextHandler != null)
         {
             var nextHandler = _nextHandler.Handle(ticket);

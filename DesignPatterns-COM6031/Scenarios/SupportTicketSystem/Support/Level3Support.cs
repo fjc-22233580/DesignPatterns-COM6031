@@ -1,4 +1,5 @@
 ﻿using DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Common;
+using DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Models;
 
 namespace DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Support;
 
@@ -14,8 +15,8 @@ public class Level3Support : SupportHandler
     /// <summary>
     /// Resolves a ticket that has been escalated to Level 3 support.
     /// </summary>
-    protected override string Resolve(Models.Ticket ticket)
+    protected override string Resolve(Ticket ticket)
     {
-        return $"Level 3 resolved ticket {ticket.Title}";
+        return $"{GetType().Name} resolved ticket with ID: {ticket.Id}";
     }
 }

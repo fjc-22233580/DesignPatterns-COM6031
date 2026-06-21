@@ -55,8 +55,8 @@ public class SupportTicketSystemDemo : IDemo
     /// </summary>
     private void CreateL1Ticket()
     {
-        var ticket = new Models.Ticket(
-            Guid.Parse("11111111-1111-1111-1111-111111111111"),
+        var ticket = new Ticket(
+            "0001",
             "Unable to Login",
             "User has forgotten their password and cannot access the support portal.",
             DateTime.Now,
@@ -68,6 +68,7 @@ public class SupportTicketSystemDemo : IDemo
         sb.AppendLine();
         sb.AppendLine(ticket.ToString());
         sb.AppendLine(_support.Handle(ticket));
+        sb.AppendLine();
         ConsoleView.PrintMessage(Name, sb.ToString());
         
     }
@@ -77,8 +78,8 @@ public class SupportTicketSystemDemo : IDemo
     /// </summary>
     private void CreateL2Ticket()
     {
-        var ticket = new Models.Ticket(
-            Guid.Parse("22222222-2222-2222-2222-222222222222"),
+        var ticket = new Ticket(
+            "0002",
             "Printer Offline",
             "The office network printer is not responding to print requests.",
             DateTime.Now,
@@ -90,6 +91,7 @@ public class SupportTicketSystemDemo : IDemo
         sb.AppendLine();
         sb.AppendLine(ticket.ToString());
         sb.AppendLine(_support.Handle(ticket));
+        sb.AppendLine();
         ConsoleView.PrintMessage(Name, sb.ToString());
     }
     
@@ -98,8 +100,8 @@ public class SupportTicketSystemDemo : IDemo
     /// </summary>
     private void CreateL3Ticket()
     {
-        var ticket = new Models.Ticket(
-            Guid.Parse("33333333-3333-3333-3333-333333333333"),
+        var ticket = new Ticket(
+            "0003",
             "Production Server Outage",
             "The main production server is unavailable and all users are affected.",
             DateTime.Now,
@@ -111,6 +113,7 @@ public class SupportTicketSystemDemo : IDemo
         sb.AppendLine();
         sb.AppendLine(ticket.ToString());
         sb.AppendLine(_support.Handle(ticket));
+        sb.AppendLine();
         ConsoleView.PrintMessage(Name, sb.ToString());
     }
 }

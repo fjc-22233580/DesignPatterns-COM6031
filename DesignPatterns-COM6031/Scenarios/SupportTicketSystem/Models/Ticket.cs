@@ -7,7 +7,7 @@ namespace DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Models;
 /// </summary>
 public class Ticket
 {
-    public Ticket(Guid id, string title, string description, DateTime createdDate, TicketPriority priority,
+    public Ticket(string id, string title, string description, DateTime createdDate, TicketPriority priority,
         TicketCategory category)
     {
         Id = id;
@@ -21,7 +21,7 @@ public class Ticket
     /// <summary>
     /// Gets the unique ticket identifier.
     /// </summary>
-    public Guid Id { get; }
+    public string Id { get; }
 
     /// <summary>
     /// Gets the ticket title.
@@ -54,6 +54,7 @@ public class Ticket
     public override string ToString()
     {
         var sb = new StringBuilder();
+        sb.AppendLine($"ID: {Id}");
         sb.AppendLine($"Title: {Title}");
         sb.AppendLine($"Description: {Description}");
         sb.AppendLine($"Created on: {CreatedDate.ToShortDateString()}");

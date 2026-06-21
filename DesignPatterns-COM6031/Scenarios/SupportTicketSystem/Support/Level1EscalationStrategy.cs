@@ -11,7 +11,7 @@ public class Level1EscalationStrategy : IEscalationStrategy
     /// <summary>
     /// Determines whether the ticket can be handled by Level 1 support.
     /// </summary>
-    public bool CanHandle(Models.Ticket ticket)
+    public bool CanHandle(Ticket ticket)
     {
         return ticket.Category == TicketCategory.PasswordReset
                || ticket.Priority == TicketPriority.Low;

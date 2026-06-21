@@ -17,6 +17,6 @@ public class Level2Support : SupportHandler
     /// </summary>
     protected override string Resolve(Models.Ticket ticket)
     {
-        return $"Level 2 resolved ticket {ticket.Title}";
+        return $"{GetType().Name} resolved ticket with ID: {ticket.Id}";
     }
 }
