@@ -6,6 +6,9 @@ using DesignPatterns_COM6031.Views;
 
 namespace DesignPatterns_COM6031.Scenarios.HomeSimulationSystem;
 
+/// <summary>
+/// Demonstrates the smart home scenario using Command and Facade patterns.
+/// </summary>
 public class HomeSimulationDemo : IDemo
 {
     private readonly RemoteControl _remote;
@@ -16,25 +19,35 @@ public class HomeSimulationDemo : IDemo
 
     public HomeSimulationDemo()
     {
+        // Set up the smart home devices that act as command receivers.
         _light = new Light("Living Room");
         _thermostat = new Thermostat("Airing Cupboard");
         _frontDoor = new DoorLock("Front Door");
 
+        // The facade coordinates multiple devices for higher-level modes.
         _smartHomeFacade = new SmartHomeFacade(_light, _thermostat, _frontDoor)
         {
             EveningTemperature = 22,
             AwayTemperature = 16,
         };
 
+        // The remote control acts as the command invoker.
         _remote = new RemoteControl();
     }
 
-    public string Name => "Home Simulation";
+    /// <summary>
+    /// Gets the display name used in the main application menu.
+    /// </summary>
+    public string Name => "Home simulation demo";
 
+    /// <summary>
+    /// Runs the smart home scenario menu.
+    /// </summary>
     public void Run()
     {
         bool running = true;
 
+        // Each menu option creates a command which is then executed by the remote control.
         var menuOptions = new List<MenuItem>
         {
             new MenuItem("Turn light on",
@@ -65,11 +78,9 @@ public class HomeSimulationDemo : IDemo
                 () => running = false),
         };
 
-        // Print menu and wait for the user to respond.
-        var stringMenu = menuOptions.Select(x => x.Title).ToList();
         while (running)
         {
-            int response = ConsoleView.PrintSelectableMenu(Name, stringMenu);
+            int response = ConsoleView.PrintSelectableMenu(Name, menuOptions);
             menuOptions[response].Action();
         }
     }
@@ -92,10 +103,10 @@ public class HomeSimulationDemo : IDemo
     {
         void ExecuteMenuAction()
         {
-            // Instantiate the command
+            // Instantiate a fresh command for this menu selection.
             ICommand command = createCommand();
 
-            // Execute the command, then print the response
+            // The remote invokes the command and stores it for undo.
             string response = _remote.PressButton(command);
             ConsoleView.PrintMessage(Name, response);
         }

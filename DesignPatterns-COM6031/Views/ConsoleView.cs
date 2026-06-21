@@ -1,16 +1,23 @@
 ﻿using System.Text;
-using DesignPatterns_COM6031.Scenarios.DocumentCreation;
+using DesignPatterns_COM6031.Common;
 using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
-using DesignPatterns_COM6031.Scenarios.SupportTicketSystem;
-using DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Ticket;
+using DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
+using DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
+using DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
 
 namespace DesignPatterns_COM6031.Views;
 
-public class ConsoleView
+/// <summary>
+/// Provides shared console output methods used by the scenario demonstrations.
+/// </summary>
+public static class ConsoleView
 {
     private const int BoxWidth = 80;
 
-    public static int PrintSelectableMenu(string title, List<string> items)
+    /// <summary>
+    /// Prints a selectable console menu and returns the index of the selected item.
+    /// </summary>
+    public static int PrintSelectableMenu(string title, List<MenuItem> items)
     {
         int selectedIndex = 0;
         bool inMenu = true;
@@ -39,8 +46,8 @@ public class ConsoleView
                 }
 
                 string line = selected
-                    ? $"  {menuNumber}. {items[i]}  "
-                    : $"  {menuNumber}. {items[i]}";
+                    ? $"  {menuNumber}. {items[i].Title}  "
+                    : $"  {menuNumber}. {items[i].Title}";
 
                 Console.Write(line.PadRight(BoxWidth));
                 Console.ResetColor();
@@ -71,36 +78,71 @@ public class ConsoleView
 
         return selectedIndex;
     }
-    
-    
-    public static void PrintTicket(string title, Ticket ticket)
-    {
-        var sb = new StringBuilder();
-        sb.AppendLine(ticket.Title);
-        sb.AppendLine(ticket.Description);
-        sb.AppendLine(ticket.CreatedDate.ToShortDateString());
-        sb.AppendLine(ticket.Priority.ToString());
-        sb.AppendLine(ticket.Category.ToString());
-        
-        PrintBox(title, sb.ToString());
-    }
 
-
+    /// <summary>
+    /// Prints the common document fields, along with any document-specific details.
+    /// </summary>
     public static void PrintDocument(string title, IDocument document)
     {
         var sb = new StringBuilder();
-        sb.AppendLine(document.Title);
-        sb.AppendLine(document.Body);
-        sb.AppendLine(document.Footer);
+        sb.AppendLine("=========================");
+        sb.AppendLine($"Type: {document.GetType().Name}");
+        sb.AppendLine("=========================");
+        sb.AppendLine();
+        sb.AppendLine($"Title: {document.Title}");
+        sb.AppendLine($"Body: {document.Body}");
+        sb.AppendLine($"Footer: {document.Footer}");
+
+        switch (document)
+        {
+            case SpreadsheetDocument spreadsheet:
+            {
+                sb.AppendLine();
+                sb.AppendLine("Worksheets:");
+            
+                foreach (var spreadsheetWorksheet in spreadsheet.Worksheets)
+                {
+                    sb.AppendLine(spreadsheetWorksheet);
+                }
+
+                break;
+            }
+            case WordDocument wordDocument:
+            {
+                sb.AppendLine();
+                sb.AppendLine("Revisions:");
+            
+                foreach (var wordDocumentRevision in wordDocument.Revisions)
+                {
+                    sb.AppendLine(wordDocumentRevision);
+                }
+
+                break;
+            }
+            case PdfDocument pdfDocument:
+            {
+                sb.AppendLine();
+                sb.AppendLine($"E-sign status: {pdfDocument.IsSigned}");
+
+                break;
+            }
+                
+        }
         
         PrintBox(title, sb.ToString());
     }
 
+    /// <summary>
+    /// Prints a simple message inside the standard console box layout.
+    /// </summary>
     public static void PrintMessage(string title, string prompt)
     {
         PrintBox(title, prompt);
     }
 
+    /// <summary>
+    /// Prints boxed console output with a title, wrapped body text, and return prompt.
+    /// </summary>
     private static void PrintBox(string title, string body)
     {
         Console.Clear();
@@ -142,7 +184,9 @@ public class ConsoleView
         Console.ReadKey(true);
     }
 
-
+    /// <summary>
+    /// Centres text within a fixed-width console line.
+    /// </summary>
     private static string Centre(string text, int width)
     {
         if (text.Length >= width)

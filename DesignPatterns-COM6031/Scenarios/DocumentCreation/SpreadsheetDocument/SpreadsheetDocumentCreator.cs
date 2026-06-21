@@ -1,10 +1,14 @@
-﻿using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
+﻿namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
 
-namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
-
-public class SpreadsheetDocumentCreator : DocumentCreator
+/// <summary>
+/// Concrete creator responsible for creating spreadsheet document instances.
+/// </summary>
+public class SpreadsheetDocumentCreator : DocumentCreator<SpreadsheetDocument>
 {
-    public override IDocument CreateDocument()
+    /// <summary>
+    /// Creates a new spreadsheet document.
+    /// </summary>
+    public override SpreadsheetDocument CreateDocument()
     {
         return new SpreadsheetDocument();
     }

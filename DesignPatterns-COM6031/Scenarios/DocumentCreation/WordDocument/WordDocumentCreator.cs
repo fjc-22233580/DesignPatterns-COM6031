@@ -1,10 +1,14 @@
-﻿using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
+﻿namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
 
-namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
-
-public class WordDocumentCreator : DocumentCreator
+/// <summary>
+/// Concrete creator responsible for creating Word document instances.
+/// </summary>
+public class WordDocumentCreator : DocumentCreator<WordDocument>
 {
-    public override IDocument CreateDocument()
+    /// <summary>
+    /// Creates a new Word document.
+    /// </summary>
+    public override WordDocument CreateDocument()
     {
         return new WordDocument();
     }

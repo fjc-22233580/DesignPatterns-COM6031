@@ -2,8 +2,14 @@
 
 namespace DesignPatterns_COM6031.Scenarios.FileSystem;
 
+/// <summary>
+/// Renders the file system object model as an indented text tree.
+/// </summary>
 public static class FileSystemTreeRenderer
 {
+    /// <summary>
+    /// Renders the root file system item and all of its child items.
+    /// </summary>
     public static string Render(IFileSystemItem root)
     {
         var builder = new StringBuilder();
@@ -13,6 +19,9 @@ public static class FileSystemTreeRenderer
         return builder.ToString();
     }
 
+    /// <summary>
+    /// Recursively renders a file system item using indentation to show hierarchy.
+    /// </summary>
     private static void Render(IFileSystemItem item, StringBuilder builder, int indent)
     {
         builder.Append(' ', indent);

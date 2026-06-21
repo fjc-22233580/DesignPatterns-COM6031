@@ -2,15 +2,20 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.SpreadsheetDocument;
 
-public class SpreadsheetDocumentBuilder : DocumentBuilder<SpreadsheetDocumentBuilder>
+/// <summary>
+/// Specialised builder for configuring spreadsheet documents.
+/// </summary>
+public class SpreadsheetDocumentBuilder : DocumentBuilder<SpreadsheetDocumentBuilder, SpreadsheetDocument>
 {
-    public SpreadsheetDocumentBuilder(IDocument document) : base(document)
-    {
-    }
+    public SpreadsheetDocumentBuilder(SpreadsheetDocument document) : base(document)
+    { }
 
+    /// <summary>
+    /// Adds a spreadsheet-specific worksheet to the document.
+    /// </summary>
     public SpreadsheetDocumentBuilder AddWorksheet(string worksheetName)
     {
-        ((SpreadsheetDocument)_document).Worksheets.Add(worksheetName);
+        Document.Worksheets.Add(worksheetName);
         return this;
     }
 }

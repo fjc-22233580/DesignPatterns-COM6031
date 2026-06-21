@@ -2,16 +2,31 @@
 
 namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.WordDocument;
 
-public class WordDocumentProcessor : DocumentProcessor
+/// <summary>
+/// Concrete processor for applying Word-specific document processing rules.
+/// </summary>
+public class WordDocumentProcessor : DocumentProcessor<WordDocument>
 {
-    protected override void Validate(IDocument document)
+    /// <summary>
+    /// Validates that the Word document has revision history before the shared processing steps continue.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown when the Word document does not contain any revisions.
+    /// </exception>
+    protected override void Validate(WordDocument document)
     {
-        Console.WriteLine("Validating Word Document...");
+        if (document.Revisions.Any() == false)
+        {
+            throw new InvalidOperationException("Document is missing revisions.");
+        }
     }
 
-    protected override void Save(IDocument document)
+    /// <summary>
+    /// Saves the Word document and records the save action in the document revision history.
+    /// </summary>
+    protected override void Save(WordDocument document)
     {
-        ((WordDocument)document).Revisions.Add($"Saved at {DateTime.Now}");
+        document.Revisions.Add($"Saved at {DateTime.Now}");
         base.Save(document);
     }
 }

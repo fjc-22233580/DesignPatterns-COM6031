@@ -2,6 +2,9 @@
 
 namespace DesignPatterns_COM6031.Scenarios.SupportTicketSystem.Support;
 
+/// <summary>
+/// Concrete support handler for resolving Level 2 support tickets.
+/// </summary>
 public class Level2Support : SupportHandler
 {
     public Level2Support(IEscalationStrategy escalationStrategy) 
@@ -9,8 +12,11 @@ public class Level2Support : SupportHandler
     {
     }
         
-    protected override string Resolve(Ticket.Ticket ticket)
+    /// <summary>
+    /// Resolves a ticket that has been accepted by the Level 2 escalation strategy.
+    /// </summary>
+    protected override string Resolve(Models.Ticket ticket)
     {
-        return $"Level 2 resolved ticket {ticket.Title}";
+        return $"{GetType().Name} resolved ticket with ID: {ticket.Id}";
     }
 }

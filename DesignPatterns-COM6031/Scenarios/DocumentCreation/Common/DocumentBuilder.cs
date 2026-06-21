@@ -1,36 +1,60 @@
-﻿using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
+﻿namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
 
-namespace DesignPatterns_COM6031.Scenarios.DocumentCreation;
-
-public abstract class DocumentBuilder<TBuilder> where TBuilder : DocumentBuilder<TBuilder>
+/// <summary>
+/// Base builder used to construct documents through a shared fluent interface.
+/// </summary>
+/// <typeparam name="TBuilder">
+/// The concrete builder type returned from each fluent method.
+/// </typeparam>
+/// <typeparam name="TDocument">
+/// The concrete document type being built.
+/// </typeparam>
+public abstract class DocumentBuilder<TBuilder, TDocument> 
+    where TBuilder : DocumentBuilder<TBuilder, TDocument> 
+    where TDocument : IDocument
 {
-    protected readonly IDocument _document;
-    
-    protected DocumentBuilder(IDocument document)
+    protected DocumentBuilder(TDocument document)
     {
-        _document = document;
+        Document = document;
     }
     
+    /// <summary>
+    /// Gets the document instance being configured by the builder.
+    /// </summary>
+    protected TDocument Document { get; }
+    
+    /// <summary>
+    /// Adds a title to the document and returns the concrete builder for chaining.
+    /// </summary>
     public virtual TBuilder AddTitle(string title)
     {
-        _document.Title = title;
+        Document.Title = title;
         return (TBuilder)this;
     }
 
-    public TBuilder AddBody(string body)
+    /// <summary>
+    /// Adds body content to the document and returns the concrete builder for chaining.
+    /// </summary>
+    public virtual TBuilder AddBody(string body)
     {
-        _document.Body = body;
+        Document.Body = body;
         return (TBuilder)this;
     }
 
+    /// <summary>
+    /// Adds a footer to the document and returns the concrete builder for chaining.
+    /// </summary>
     public virtual TBuilder AddFooter(string footer)
     {
-        _document.Footer = footer;
+        Document.Footer = footer;
         return (TBuilder)this;
     }
 
+    /// <summary>
+    /// Returns the completed document.
+    /// </summary>
     public IDocument Build()
     {
-        return _document;
+        return Document;
     }
 }

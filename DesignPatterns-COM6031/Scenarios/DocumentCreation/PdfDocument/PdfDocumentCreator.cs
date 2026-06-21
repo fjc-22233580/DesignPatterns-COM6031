@@ -1,10 +1,14 @@
-﻿using DesignPatterns_COM6031.Scenarios.DocumentCreation.Common;
+﻿namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
 
-namespace DesignPatterns_COM6031.Scenarios.DocumentCreation.PdfDocument;
-
-public class PdfDocumentCreator : DocumentCreator
+/// <summary>
+/// Concrete creator responsible for creating PDF document instances.
+/// </summary>
+public class PdfDocumentCreator : DocumentCreator<PdfDocument>
 {
-    public override IDocument CreateDocument()
+    /// <summary>
+    /// Creates a new PDF document.
+    /// </summary>
+    public override PdfDocument CreateDocument()
     {
         return new PdfDocument();
     }
