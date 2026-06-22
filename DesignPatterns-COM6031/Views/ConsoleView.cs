@@ -17,7 +17,7 @@ public static class ConsoleView
     /// <summary>
     /// Prints a selectable console menu and returns the index of the selected item.
     /// </summary>
-    public static int PrintSelectableMenu(string title, List<MenuItem> items)
+    public static MenuItem PrintSelectableMenu(string title, List<MenuItem> items)
     {
         int selectedIndex = 0;
         bool inMenu = true;
@@ -76,7 +76,7 @@ public static class ConsoleView
             }
         }
 
-        return selectedIndex;
+        return items[selectedIndex];
     }
 
     /// <summary>

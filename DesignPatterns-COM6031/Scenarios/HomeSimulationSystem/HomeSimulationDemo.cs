@@ -80,8 +80,8 @@ public class HomeSimulationDemo : IDemo
 
         while (running)
         {
-            int response = ConsoleView.PrintSelectableMenu(Name, menuOptions);
-            menuOptions[response].Action();
+            var menuItem = ConsoleView.PrintSelectableMenu(Name, menuOptions);
+            menuItem.Action();
         }
     }
     
