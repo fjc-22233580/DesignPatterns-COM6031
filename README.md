@@ -14,9 +14,9 @@ The project demonstrates design pattern implementations across four scenarios:
 
 ## Running the application
 
-A pre-built executable is available from the GitHub Actions build:
+A pre-built executable is available from the GitHub Release:
 
-[Download latest executable from GitHub Actions](https://github.com/fjc-22233580/DesignPatterns-COM6031/releases/tag/Release)
+[Download latest executable](https://github.com/fjc-22233580/DesignPatterns-COM6031/releases/tag/Release)
 
 Download the build artifact, extract it, and run the executable.
 
