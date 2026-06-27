@@ -6,11 +6,11 @@ namespace DesignPatterns_COM6031.Scenarios.HomeSimulationSystem.Commands;
 /// <summary>
 /// Command that locks the door.
 /// </summary>
-public class DoorLockCommand : ICommand
+public class LockDoorCommand : ICommand
 {
     private readonly DoorLock _doorLock;
 
-    public DoorLockCommand(DoorLock doorLock)
+    public LockDoorCommand(DoorLock doorLock)
     {
         _doorLock = doorLock;
     }
