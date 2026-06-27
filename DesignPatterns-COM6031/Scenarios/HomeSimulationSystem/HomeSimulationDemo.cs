@@ -52,9 +52,15 @@ public class HomeSimulationDemo : IDemo
         {
             new MenuItem("Turn light on",
                 CreateMenuAction(() => new LightOnCommand(_light))),
+            
+            new MenuItem("Turn light off",
+                CreateMenuAction(() => new LightOffCommand(_light))),
 
             new MenuItem("Lock front door",
-                CreateMenuAction(() => new DoorLockCommand(_frontDoor))),
+                CreateMenuAction(() => new LockDoorCommand(_frontDoor))),
+            
+            new MenuItem("Unlock front door",
+                CreateMenuAction(() => new UnlockDoorCommand(_frontDoor))),
             
             new MenuItem("Increase temperature",
                 CreateMenuAction(() => new IncreaseTemperatureCommand(_thermostat))),
@@ -80,8 +86,8 @@ public class HomeSimulationDemo : IDemo
 
         while (running)
         {
-            int response = ConsoleView.PrintSelectableMenu(Name, menuOptions);
-            menuOptions[response].Action();
+            var menuItem = ConsoleView.PrintSelectableMenu(Name, menuOptions);
+            menuItem.Action();
         }
     }
     

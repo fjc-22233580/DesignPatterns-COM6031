@@ -34,8 +34,8 @@ public class MenuController
 
         while (true) // No need to end this loop as there is a menu option which closes the application.
         {
-            int menuIndex = ConsoleView.PrintSelectableMenu(Name, menuOptions);
-            menuOptions[menuIndex].Action();
+            var menuItem = ConsoleView.PrintSelectableMenu(Name, menuOptions);
+            menuItem.Action();
         }
     }
 }

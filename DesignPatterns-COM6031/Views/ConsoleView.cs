@@ -17,7 +17,7 @@ public static class ConsoleView
     /// <summary>
     /// Prints a selectable console menu and returns the index of the selected item.
     /// </summary>
-    public static int PrintSelectableMenu(string title, List<MenuItem> items)
+    public static MenuItem PrintSelectableMenu(string title, List<MenuItem> items)
     {
         int selectedIndex = 0;
         bool inMenu = true;
@@ -28,9 +28,7 @@ public static class ConsoleView
         {
             Console.SetCursorPosition(0, 0);
 
-            Console.WriteLine("┌" + new string('─', BoxWidth) + "┐");
-            Console.WriteLine("│" + Centre(title, BoxWidth) + "│");
-            Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
+            PrintTitleBar(title);
 
             for (int i = 0; i < items.Count; i++)
             {
@@ -54,9 +52,7 @@ public static class ConsoleView
                 Console.WriteLine("│");
             }
 
-            Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
-            Console.WriteLine("│" + "Use W/S or Up/Down, Enter to select".PadRight(BoxWidth) + "│");
-            Console.WriteLine("└" + new string('─', BoxWidth) + "┘");
+            PrintInfoSection();
 
             key = Console.ReadKey(true).Key;
 
@@ -76,8 +72,10 @@ public static class ConsoleView
             }
         }
 
-        return selectedIndex;
+        return items[selectedIndex];
     }
+
+
 
     /// <summary>
     /// Prints the common document fields, along with any document-specific details.
@@ -99,7 +97,7 @@ public static class ConsoleView
             {
                 sb.AppendLine();
                 sb.AppendLine("Worksheets:");
-            
+
                 foreach (var spreadsheetWorksheet in spreadsheet.Worksheets)
                 {
                     sb.AppendLine(spreadsheetWorksheet);
@@ -111,7 +109,7 @@ public static class ConsoleView
             {
                 sb.AppendLine();
                 sb.AppendLine("Revisions:");
-            
+
                 foreach (var wordDocumentRevision in wordDocument.Revisions)
                 {
                     sb.AppendLine(wordDocumentRevision);
@@ -126,9 +124,8 @@ public static class ConsoleView
 
                 break;
             }
-                
         }
-        
+
         PrintBox(title, sb.ToString());
     }
 
@@ -148,9 +145,7 @@ public static class ConsoleView
         Console.Clear();
         Console.SetCursorPosition(0, 0);
 
-        Console.WriteLine("┌" + new string('─', BoxWidth) + "┐");
-        Console.WriteLine("│" + Centre(title, BoxWidth) + "│");
-        Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
+        PrintTitleBar(title);
 
         foreach (string inputLine in body.Split(Environment.NewLine))
         {
@@ -177,23 +172,44 @@ public static class ConsoleView
             }
         }
 
-        Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
-        Console.WriteLine("│" + "Press any key to return to menu".PadRight(BoxWidth) + "│");
-        Console.WriteLine("└" + new string('─', BoxWidth) + "┘");
+        PrintInfoSection();
 
         Console.ReadKey(true);
+    }
+    
+    /// <summary>
+    /// Print the title bar with the relevant tile
+    /// </summary>
+    /// <param name="title">The title for the given menu or scenario.</param>
+    private static void PrintTitleBar(string title)
+    {
+        Console.WriteLine("┌" + new string('─', BoxWidth) + "┐");
+        Console.WriteLine("│" + PrintCenteredText(title) + "│");
+        Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
+    }
+    
+    /// <summary>
+    /// Prints the information section at the bottom of the box.
+    /// </summary>
+    private static void PrintInfoSection()
+    {
+        Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
+        Console.WriteLine("│" + "Use W/S or Up/Down, Enter to select".PadRight(BoxWidth) + "│");
+        Console.WriteLine("├" + new string('─', BoxWidth) + "┤");
+        Console.WriteLine("│" + "Design Patterns Test App - COM6031".PadRight(BoxWidth) + "│");
+        Console.WriteLine("│" + "Author: Francisco Castillo (22233580)".PadRight(BoxWidth) + "│");
+        Console.WriteLine("└" + new string('─', BoxWidth) + "┘");
     }
 
     /// <summary>
     /// Centres text within a fixed-width console line.
     /// </summary>
-    private static string Centre(string text, int width)
+    private static string PrintCenteredText(string text)
     {
-        if (text.Length >= width)
-            return text[..width];
+        if (text.Length >= BoxWidth)
+            return text[..BoxWidth];
 
-        int leftPadding = (width + text.Length) / 2;
-        return text.PadLeft(leftPadding).PadRight(width);
+        int leftPadding = (BoxWidth + text.Length) / 2;
+        return text.PadLeft(leftPadding).PadRight(BoxWidth);
     }
-
 }

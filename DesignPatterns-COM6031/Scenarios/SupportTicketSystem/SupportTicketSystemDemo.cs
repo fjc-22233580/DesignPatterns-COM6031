@@ -45,8 +45,8 @@ public class SupportTicketSystemDemo : IDemo
 
         while (running)
         {
-            int response = ConsoleView.PrintSelectableMenu(Name, menuOptions);
-            menuOptions[response].Action();
+            var response = ConsoleView.PrintSelectableMenu(Name, menuOptions);
+            response.Action();
         }
     }
 

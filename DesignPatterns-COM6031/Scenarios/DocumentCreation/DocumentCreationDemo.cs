@@ -34,8 +34,8 @@ public class DocumentCreationDemo : IDemo
 
         while (running)
         {
-            int menuIndex = ConsoleView.PrintSelectableMenu(Name, menuOptions);
-            menuOptions[menuIndex].Action();
+            var menuItem = ConsoleView.PrintSelectableMenu(Name, menuOptions);
+            menuItem.Action();
         }
     }
 
