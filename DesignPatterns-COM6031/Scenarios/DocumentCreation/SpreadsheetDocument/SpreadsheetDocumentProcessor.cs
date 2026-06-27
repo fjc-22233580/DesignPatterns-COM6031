@@ -17,7 +17,7 @@ public class SpreadsheetDocumentProcessor : DocumentProcessor<SpreadsheetDocumen
     {
         if (document.Worksheets.Any() == false)
         {
-            throw new InvalidOperationException("Document is missing revisions.");
+            throw new InvalidOperationException("Document is missing worksheets.");
         }
     }
 }
